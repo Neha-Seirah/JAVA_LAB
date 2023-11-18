@@ -1,1 +1,39 @@
+public class FrequencyAnalyzer {
+    public static void topKFrequentNumbers(int[] arr, int K) {
+        int[] frequency = new int[1001]; // Assuming the numbers are in the range 0 to 1000
 
+        // Calculate frequency of each number
+        for (int num : arr) {
+            frequency[num]++;
+        }
+
+        // Print the top K numbers with the maximum occurrences
+        int count;
+        for (count = 0; count < K; count++) {
+            int max = 0;
+            int maxIndex = -1;
+            for (int i = 0; i < frequency.length; i++) {
+                if (frequency[i] > max) {
+                    max = frequency[i];
+                    maxIndex = i;
+                }
+            }
+            if (maxIndex != -1) {
+                System.out.print(maxIndex + " ");
+                frequency[maxIndex] = 0;
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        int[] array1 = {3, 1, 4, 4, 5, 2, 6, 1};
+        int[] array2 = {7, 10, 11, 5, 2, 5, 5, 7, 11, 8, 9};
+
+        System.out.print("Output for array1: ");
+        topKFrequentNumbers(array1, 2);
+        System.out.println();
+
+        System.out.print("Output for array2: ");
+        topKFrequentNumbers(array2, 4);
+    }
+}
